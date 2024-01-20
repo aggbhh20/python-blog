@@ -1,0 +1,23 @@
+{% extends "base.html" %} {% block title %}Todo:{% endblock %} {% block head %}Blog{% endblock %} {% block style %}
+<style>
+    .blogPostsDiv{
+        border: 3px outset black;
+        background-color: aqua;
+        text-align: center;
+    }
+</style>
+{% endblock %}
+{% block content %}
+<ul>
+    {% for todo in todos %}
+    <li>
+        {{todo.title}}: {% if todo.completed %}Completed{% else %}not done yet{% endif %}
+    </li>
+    {% endfor %}
+</ul>
+<form method="post" action="/todos/">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button type="submit", name="todoAdd">Add new todo</button>
+</form>
+{% endblock %}

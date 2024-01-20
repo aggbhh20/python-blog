@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block head %}{% endblock %}
+{% block style %}<style>
+    .blogPostsDiv{
+        border: 3px outset black;
+        background-color: aqua;
+        text-align: center;
+        font-family: 'Courier New', Courier, monospace;
+    }
+    .titleDiv{
+        text-align: center;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+</style>
+{% endblock %}
+{% block title %}<div class="titleDiv">
+    Blog Posts
+</div>{% endblock %}
+{% block content %}
+
+{% for blogpost in Itemblogpost %}
+<div class="blogPostsDiv">
+    <p><h1>{{blogpost.title}}</h1> {{blogpost.content}}</p> 
+    <form method="POST", name="deleteBlogPost", action="/deleteBlogpost/">
+        {% csrf_token %}
+        Press to delete
+        <input type="submit" name="btn" value={{blogpost.idNum}}>
+       </form>
+</div>
+{% endfor %}
+<form method="post" action="/blogposts/">
+    {% csrf_token %}
+    {{blogpostform.as_p}}
+    <button type="submit", name="blogpostAdd">Add new blogpost</button>
+</form>
+{% endblock %}
