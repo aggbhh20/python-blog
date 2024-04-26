@@ -18,7 +18,7 @@
 </div>{% endblock %}
 {% block content %}
 
-{% for blogpost in Itemblogpost %}
+<!-- {% for blogpost in Itemblogpost %}
 <div class="blogPostsDiv">
     <p><h1>{{blogpost.title}}</h1> {{blogpost.content}}</p> 
     <form method="POST", name="deleteBlogPost", action="/deleteBlogpost/">
@@ -27,7 +27,7 @@
         <input type="submit" name="btn" value={{blogpost.idNum}}>
        </form>
 </div>
-{% endfor %}
+{% endfor %} -->
 <form method="post" action="/blogposts/">
     {% csrf_token %}
     {{blogpostform.as_p}}
