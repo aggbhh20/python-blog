@@ -54,6 +54,10 @@ def deleteBlogpost(request):
             instance.delete()
             print(val)
     return redirect("blogposts")
+def seeBlogposts(request):
+    blogpostform = createNewBlogpost()
+    posts = Itemblogposts.objects.all()
+    return render(request, "seeBlogposts.html", {"Itemblogpost" : posts, "blogpostform":blogpostform})
     
         
 #TODO: ADD ID TO BLOGPOSTS
