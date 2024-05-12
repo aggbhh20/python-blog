@@ -1,0 +1,43 @@
+<!DOCTYPE html> 
+{% block style %}<style>
+    .blogPostsDiv{
+        border: 3px outset black;
+        background-color: lightslategrey;
+        text-align: left;
+        font-family: 'Courier New', Courier, monospace;
+        font-size: large;
+    }
+    .centerDiv{
+        text-align: center;
+        font-family: 'Courier New', Courier, monospace;
+    }
+    .titleDiv{
+        text-align: center;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+</style>
+{% endblock %}
+<head>
+    <title>Donkemonke's blog</title>
+</head>
+<body>
+    <div class="titleDiv">
+        <h1>
+            See these blogposts! They're great(right?)
+        </h1>
+    </div>
+    
+{% for blogpost in Itemblogpost %}
+<div class="blogPostsDiv">
+
+    <div class="titleDiv"><h1>{{blogpost.title}}</h1></div> {{blogpost.content}}
+    <div class="centerDiv">
+    <form method="POST", name="deleteBlogPost", action="/deleteBlogpost/">
+        {% csrf_token %}
+        Press to delete
+        <input type="submit" name="btn" value={{blogpost.idNum}}>
+       </form>
+    </div>
+</div>
+{% endfor %}
+</body>
